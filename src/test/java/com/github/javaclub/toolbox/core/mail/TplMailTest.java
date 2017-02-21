@@ -46,7 +46,7 @@ public class TplMailTest {
 	@Test
 	public void testSendTplMail() {
 		MailMessage message = new MailMessage();
-		message.setSubject("测试邮件");
+		message.setSubject("！牛逼的人比你更加努力！");
 		message.setFrom("hongyuan.czq@taobao.com");
 		message.setTo(new String[] {
 				"jsoft@126.com",
