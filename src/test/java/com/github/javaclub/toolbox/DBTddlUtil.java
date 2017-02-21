@@ -118,6 +118,7 @@ public class DBTddlUtil {
 		return "";
 	}
 	
+	
 	public static void main(String[] args) {
 		long store_id = 123456789L;
 		long relation_id = 112001L;
