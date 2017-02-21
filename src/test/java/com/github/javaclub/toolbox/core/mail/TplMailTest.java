@@ -28,7 +28,7 @@ public class TplMailTest {
 
 	ApplicationContext context = null;
 	private static TplMail mailSender = null;
-	String htmlUrl = "http://blog.csdn.net/littlechang/article/details/8642149";
+	String htmlUrl = "http://javaclub.sourceforge.net";
 	
 	@Before
 	public void init() throws Exception {
@@ -46,11 +46,11 @@ public class TplMailTest {
 	@Test
 	public void testSendTplMail() {
 		MailMessage message = new MailMessage();
-		message.setSubject("！牛逼的人比你更加努力！");
-		message.setFrom("hongyuan.czq@taobao.com");
+		message.setSubject("明天你好！");
+		message.setFrom("adminx@aliyun.com");
 		message.setTo(new String[] {
 				"jsoft@126.com",
-				"etxp@qq.com",
+				"gerald.chen.hz@gmail.com",
 				//"hongyuan.czq@taobao.com"
 		});
 		mailSender.sendTemplateMail(htmlUrl, message);
