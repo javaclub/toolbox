@@ -22,23 +22,23 @@ public class DBTddlUtil {
 	@Test
 	public void eticket() {
 		String code = "35910223";
-		System.out.println("code_eticket:" + Math.abs(code.hashCode()) % 128);
+		System.out.println("c_etc:" + Math.abs(code.hashCode()) % 128);
 
 		long orderId = 394380334621726L;
-		System.out.println("order_eticket:" + orderId % 128);
-		System.out.println("order_log:" + orderId % 256);
+		System.out.println("o_etc:" + orderId % 128);
+		System.out.println("o_log:" + orderId % 256);
 
 	}
 	
 	@Test
 	public void poi_shanghu_store() {
 		long itemId = 36000291632L;
-		System.out.println("item_dump:" + itemId % 64);
-		System.out.println("item_pos:" + itemId % 64);
+		System.out.println("it_dp:" + itemId % 64);
+		System.out.println("it_pos:" + itemId % 64);
 
 		String localstoreId = "6db64705ce044a77976f4e36e50311c8";
-		System.out.println("localstore:" + Math.abs(localstoreId.hashCode()) % 256);
-		System.out.println("localstore_dump:" + Math.abs(localstoreId.hashCode()) % 256);
+		System.out.println("localst:" + Math.abs(localstoreId.hashCode()) % 256);
+		System.out.println("localst_xxx:" + Math.abs(localstoreId.hashCode()) % 256);
 
 	}
 	
@@ -48,18 +48,18 @@ public class DBTddlUtil {
 		long relation_id = 112001L;
 		String outer_id = "10187498";
 		
-		System.out.println("store:" + store_id % 256);
-		System.out.println("store_relation:" + store_id % 256);
-		System.out.println("store_extends:" + store_id % 256);
-		System.out.println("store_relation_dump:" + relation_id % 256);
-		System.out.println("ot_store_relation:" + Math.abs(outer_id.hashCode()) % 256);
+		System.out.println("st:" + store_id % 256);
+		System.out.println("st_rel:" + store_id % 256);
+		System.out.println("st_ex:" + store_id % 256);
+		System.out.println("st_rel_dp:" + relation_id % 256);
+		System.out.println("ot_st_rel:" + Math.abs(outer_id.hashCode()) % 256);
 	}
 	
 	@Test
 	public void test_get_union_all() {
 		StringBuilder sbf = new StringBuilder();
 		for (int i = 0; i < 256; i++) {
-			String sql = "SELECT * from store_relation_dump_" + mod(i);
+			String sql = "SELECT * from store_rel_dp_" + mod(i);
 			sbf.append(sql);
 			if(i < 255) {
 				sbf.append(" ").append("union all").append(" ");
@@ -74,7 +74,7 @@ public class DBTddlUtil {
 		int MIN_INDEX = 0;
 		int MAX_INDEX = 30;
 		for (int i = MIN_INDEX; i < MAX_INDEX; i++) {
-			String sql = "select count(*) from ma_biz_" + mod(i) + " where gmt_create>'2016-06-03 00:00:00' and biz_type=3001";
+			String sql = "select count(*) from xx_biz_" + mod(i) + " where gmt_create>'2016-06-03 00:00:00' and biz_type=8801";
 			sbf.append(sql);
 			if(i < MAX_INDEX - 1) {
 				sbf.append(" ").append("union all").append(" ");
@@ -99,10 +99,10 @@ public class DBTddlUtil {
 	@Test
 	public void testSqlDelete() {
 		for (int i = 0; i < 1024; i++) {
-			String sql = "DELETE FROM eticket_record_" + mod(i) + ";";
+			String sql = "DELETE FROM etc_record_" + mod(i) + ";";
 			System.out.println(sql);
 		}
-		System.out.println("DELETE FROM history_transfer_mapping;");
+		System.out.println("DELETE FROM xxx;");
 	}
 	
 	String mod(int i) {
@@ -123,11 +123,11 @@ public class DBTddlUtil {
 		long relation_id = 112001L;
 		String outer_id = "2100506653123";
 		
-		System.out.println("store:" + store_id % 256);
-		System.out.println("store_relation:" + store_id % 256);
-		System.out.println("store_extends:" + store_id % 256);
-		System.out.println("store_relation_dump:" + relation_id % 256);
-		System.out.println("ot_store_relation:" + Math.abs(outer_id.hashCode()) % 256);
+		System.out.println("st:" + store_id % 256);
+		System.out.println("st_rel:" + store_id % 256);
+		System.out.println("st_ex:" + store_id % 256);
+		System.out.println("st_rel_dp:" + relation_id % 256);
+		System.out.println("ot_st_rel:" + Math.abs(outer_id.hashCode()) % 256);
 		
 		Integer a = null;
 		Integer b = 8;
