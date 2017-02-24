@@ -61,7 +61,6 @@ import java.util.Map;
  * @author <a href="mailto:gerald.chen@qq.com">Gerald Chen</a>
  * @version $Id: MessageFormatter.java,v 1.2 2011/03/03 03:39:41 gerald.chen Exp $
  */
-@SuppressWarnings("unchecked")
 public class MessageFormatter {
 
 	static final char DELIM_START = '{';
