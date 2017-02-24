@@ -627,6 +627,24 @@ public abstract class Strings {
 		buf.append(str.substring(1));
 		return buf.toString();
 	}
+    
+    /**
+     * 把非空的字符串都连接起来返回
+     * 
+     * @param array 待连接的字符串
+     * @return
+     */
+    public static String concat(String... array) {
+    	if(null == array || 0 >= array.length) {
+    		return "";
+    	}
+    	StringBuilder sbf = new StringBuilder();
+    	for (String string : array) {
+    		sbf.append(null == string ? "" : string);
+		}
+    	
+    	return sbf.toString();
+    }
 	
 	public static void main(String[] args) {
 		for(int i = 0; i < 20; i++) {
