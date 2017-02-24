@@ -18,7 +18,7 @@ import com.github.javaclub.toolbox.util.PropUtil;
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
  * @version $Id: Consts.java 56 2011-06-27 02:11:24Z gerald.chen.hz@gmail.com $
  */
-public final class Consts implements Serializable {
+public final class Constants implements Serializable {
 
 	/** id */
 	private static final long serialVersionUID = 5594079818259577805L;

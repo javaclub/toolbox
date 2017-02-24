@@ -16,7 +16,7 @@ import java.util.Set;
 
 import javax.mail.internet.MimeMessage;
 
-import com.github.javaclub.toolbox.Consts;
+import com.github.javaclub.toolbox.Constants;
 import com.github.javaclub.toolbox.core.JRuntimeException;
 import com.github.javaclub.toolbox.core.Message;
 import com.github.javaclub.toolbox.core.PropertySystem;
@@ -56,7 +56,7 @@ public class DefaultMailSender extends AbstractMailSender implements Initializin
 			MimeMessage mailMessage = javaMailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(
 					mailMessage, true,
-					getMailEncoding() == null ? Consts.PREFERED_ENCODING
+					getMailEncoding() == null ? Constants.PREFERED_ENCODING
 							: getMailEncoding());
 
 			messageHelper.setTo(sendMessage.getTo());

@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
-import com.github.javaclub.toolbox.Consts;
+import com.github.javaclub.toolbox.Constants;
 
 /**
  * Miscellaneous object utility methods.
@@ -241,14 +241,14 @@ public abstract class ObjectUtil {
             return null;
         }
         if (separator == null) {
-            separator = Consts.EMPTY_STRING;
+            separator = Constants.EMPTY_STRING;
         }
 
         // endIndex - startIndex > 0:   Len = NofStrings *(len(firstString) + len(separator))
         //           (Assuming that all Strings are roughly equally long)
         int bufSize = (endIndex - startIndex);
         if (bufSize <= 0) {
-            return Consts.EMPTY_STRING;
+            return Constants.EMPTY_STRING;
         }
         bufSize *= ((array[startIndex] == null ? 16 : array[startIndex].toString().length())
                         + separator.length());

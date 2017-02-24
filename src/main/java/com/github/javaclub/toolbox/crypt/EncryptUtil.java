@@ -17,7 +17,7 @@ import java.io.OutputStreamWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import com.github.javaclub.toolbox.Consts;
+import com.github.javaclub.toolbox.Constants;
 import com.github.javaclub.toolbox.crypt.impl.BlowfishCipher;
 
 import org.springframework.util.StringUtils;
@@ -121,13 +121,13 @@ public class EncryptUtil {
 	 * @throws IOException
 	 */
 	public static void encrypt(File src, File dst, String key, String encoding) throws IOException {
-		String charset = Consts.PREFERED_ENCODING;
-		charset = (StringUtils.hasLength(encoding) ? encoding : Consts.PREFERED_ENCODING);
+		String charset = Constants.PREFERED_ENCODING;
+		charset = (StringUtils.hasLength(encoding) ? encoding : Constants.PREFERED_ENCODING);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(src), charset));
 		StringBuilder content = new StringBuilder();
 		String line = null;
 		while((line = reader.readLine()) != null) {
-			content.append(line + Consts.LINE_SEPARATER);
+			content.append(line + Constants.LINE_SEPARATER);
 		}
 		if(null != reader) {
 			reader.close();
@@ -151,13 +151,13 @@ public class EncryptUtil {
 	 * @throws IOException
 	 */
 	public static void decrypt(File src, File dst, String key, String encoding) throws IOException {
-		String charset = Consts.PREFERED_ENCODING;
-		charset = (StringUtils.hasLength(encoding) ? encoding : Consts.PREFERED_ENCODING);
+		String charset = Constants.PREFERED_ENCODING;
+		charset = (StringUtils.hasLength(encoding) ? encoding : Constants.PREFERED_ENCODING);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(src), charset));
 		StringBuilder content = new StringBuilder();
 		String line = null;
 		while((line = reader.readLine()) != null) {
-			content.append(line + Consts.LINE_SEPARATER);
+			content.append(line + Constants.LINE_SEPARATER);
 		}
 		if(null != reader) {
 			reader.close();

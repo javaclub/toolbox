@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-import com.github.javaclub.toolbox.Consts;
+import com.github.javaclub.toolbox.Constants;
 
 import org.springframework.util.StringUtils;
 
@@ -25,7 +25,7 @@ public class LogUtil {
 	
 	private static String timeFormat = "yyyy/MM/dd HH:mm:ss";
 	
-	private static String logPath = Consts.USER_HOME_DIR;
+	private static String logPath = Constants.USER_HOME_DIR;
 	
 	/** 默认每天一个日志文件 */
 	private static boolean singleFile = false;
