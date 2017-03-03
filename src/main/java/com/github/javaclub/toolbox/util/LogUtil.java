@@ -70,7 +70,7 @@ public class LogUtil {
 		try {
 			return FileUtil.createFile(filepath);
 		} catch (IOException e) {
-			return null;
+			throw new RuntimeException("IOException happened when createFile[" + filepath + "]", e);
 		}
 	}
 

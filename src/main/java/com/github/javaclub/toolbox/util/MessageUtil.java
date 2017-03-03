@@ -61,7 +61,6 @@ import java.util.Map;
  * @author <a href="mailto:gerald.chen@qq.com">Gerald Chen</a>
  * @version $Id: MessageUtil.java 69 2011-06-27 05:41:23Z gerald.chen.hz@gmail.com $
  */
-@SuppressWarnings("unchecked")
 public class MessageUtil {
 
 	static final char DELIM_START = '{';
