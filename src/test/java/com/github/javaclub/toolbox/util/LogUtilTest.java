@@ -42,7 +42,7 @@ public class LogUtilTest {
 	@Test
 	public void testWriteString() {
 		for (int i = 0; i < 10; i++) {
-			Log.write("哈哈你好我是中国" + i);
+			Log.i("哈哈你好我是中国" + i);
 		}
 
 	}
@@ -50,7 +50,7 @@ public class LogUtilTest {
 	@Test
 	public void testWriteStringObjectArray() {
 		for (int i = 0; i < 10; i++) {
-			Log.write("哈哈{} 你好我是中国人{}" + i, new String[] {
+			Log.i("哈哈{} 你好我是中国人{}" + i, new String[] {
 					Strings.random(6, "4234jhrewrfwef"),
 					Strings.random(3, "4234jhrewrfwef") });
 		}

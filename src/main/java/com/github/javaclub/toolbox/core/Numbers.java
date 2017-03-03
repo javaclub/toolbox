@@ -4,7 +4,7 @@
  * Copyright (c) 2009 by gerald. All Rights Reserved.
  */
 
-package com.github.javaclub.toolbox.util;
+package com.github.javaclub.toolbox.core;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.github.javaclub.toolbox.core.JRuntimeException;
 
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -26,7 +25,7 @@ import org.springframework.util.StringUtils;
  * @author <a href="mailto:gerald.chen@qq.com">Gerald Chen</a>
  * @version $Id: NumberUtil.java 65 2011-06-27 03:20:47Z gerald.chen.hz@gmail.com $
  */
-public abstract class NumberUtil {
+public abstract class Numbers {
 
 	private final static String BOOLSTR_TRUE = String.valueOf(true);
 	
@@ -104,7 +103,7 @@ public abstract class NumberUtil {
 	 * @param p_sDesc description of the value
 	 * @param p_nDefault default integer value
 	 * @return Returns the default integer if the value is empty; otherwise, returns the integer converted
-	 * @throws JRuntimeException if encounter errors when converting data
+	 * @throws RuntimeException if encounter errors when converting data
 	 */
 	public final static int toInt(String _sValue, int _nDefault) {
 		if (_sValue == null || _sValue.length() == 0
@@ -125,18 +124,18 @@ public abstract class NumberUtil {
 	 * @param _sValue string value
 	 * @param _sDesc description of the value
 	 * @return Returns the integer value
-	 * @throws JRuntimeException if find the value is empty, or encounter errors when converting data
+	 * @throws RuntimeException if find the value is empty, or encounter errors when converting data
 	 */
 	public final static int toInt(String _sValue, String _sDesc) {
 		if (_sValue == null || _sValue.length() == 0
 				|| (_sValue = _sValue.trim()).length() == 0) {
-			throw new JRuntimeException(_sDesc + " (int string) required.");
+			throw new RuntimeException(_sDesc + " (int string) required.");
 		}
 
 		try {
 			return Integer.parseInt(_sValue);
 		} catch (Exception ex) {
-			throw new JRuntimeException("Value [" + _sValue + "] of " + _sDesc
+			throw new RuntimeException("Value [" + _sValue + "] of " + _sDesc
 					+ " is not a valid integer!");
 		}
 	}
@@ -148,7 +147,7 @@ public abstract class NumberUtil {
 	 * @param _sDesc description of the value
 	 * @param _lDefault default long integer value
 	 * @return Returns the default long integer if the value is empty; otherwise, returns the long integer converted
-	 * @throws JRuntimeException if encounter errors when converting data
+	 * @throws RuntimeException if encounter errors when converting data
 	 */
 	public final static long toLong(String _sValue, long _lDefault) {
 		if (_sValue == null || _sValue.length() == 0
@@ -169,18 +168,18 @@ public abstract class NumberUtil {
 	 * @param _sValue string value
 	 * @param _sDesc description of the value
 	 * @return Returns the long integer value converted
-	 * @throws JRuntimeException if find the value is empty, or encounter errors when converting data
+	 * @throws RuntimeException if find the value is empty, or encounter errors when converting data
 	 */
 	public final static long toLong(String _sValue, String _sDesc) {
 		if (_sValue == null || _sValue.length() == 0
 				|| (_sValue = _sValue.trim()).length() == 0) {
-			throw new JRuntimeException(_sDesc + " (long string) required.");
+			throw new RuntimeException(_sDesc + " (long string) required.");
 		}
 
 		try {
 			return Long.parseLong(_sValue);
 		} catch (Exception ex) {
-			throw new JRuntimeException("value [" + _sValue + "] of " + _sDesc
+			throw new RuntimeException("value [" + _sValue + "] of " + _sDesc
 					+ " is not a valid long integer!");
 		}
 	}
@@ -192,7 +191,7 @@ public abstract class NumberUtil {
 	 * @param _sDesc description of the value
 	 * @param _default default double value
 	 * @return Returns the default double if the value is empty; otherwise, returns the double converted
-	 * @throws JRuntimeException if encounter errors when converting data
+	 * @throws RuntimeException if encounter errors when converting data
 	 */
 	public final static double toDouble(String _sValue, double _default) {
 		if (_sValue == null || _sValue.length() == 0
@@ -214,18 +213,18 @@ public abstract class NumberUtil {
 	 * @param _sValue string value
 	 * @param _sDesc description of the value
 	 * @return Returns the double value converted
-	 * @throws JRuntimeException if find the value is empty, or encounter errors when converting data
+	 * @throws RuntimeException if find the value is empty, or encounter errors when converting data
 	 */
 	public final static double toDouble(String _sValue, String _sDesc) {
 		if (_sValue == null || _sValue.length() == 0
 				|| (_sValue = _sValue.trim()).length() == 0) {
-			throw new JRuntimeException(_sDesc + " (double string) required.");
+			throw new RuntimeException(_sDesc + " (double string) required.");
 		}
 
 		try {
 			return Double.parseDouble(_sValue);
 		} catch (Exception ex) {
-			throw new JRuntimeException("value [" + _sValue + "] of " + _sDesc
+			throw new RuntimeException("value [" + _sValue + "] of " + _sDesc
 					+ " is not a valid double!");
 		}
 	}
@@ -235,12 +234,12 @@ public abstract class NumberUtil {
 	 * 
 	 * @param _sValue string value
 	 * @return Returns the boolean value converted
-	 * @throws JRuntimeException if find the value is empty, or encounter errors when converting data
+	 * @throws RuntimeException if find the value is empty, or encounter errors when converting data
 	 */
-	public final static boolean toBool(String _sValue, String _sDesc) {
+	public final static boolean toBoolean(String _sValue, String _sDesc) {
 		if (_sValue == null || _sValue.length() == 0
 				|| (_sValue = _sValue.trim()).length() == 0) {
-			throw new JRuntimeException(_sDesc + " (bool string) required.");
+			throw new RuntimeException(_sDesc + " (bool string) required.");
 		}
 
 		// else
@@ -254,7 +253,7 @@ public abstract class NumberUtil {
 	 * @param _bDefault default value
 	 * @return Returns the default boolean value if the value is empty, otherwise, returns boolean value converted
 	 */
-	public final static boolean toBool(String _sValue, boolean _bDefault) {
+	public final static boolean toBoolean(String _sValue, boolean _bDefault) {
 		if (_sValue == null || _sValue.length() == 0
 				|| (_sValue = _sValue.trim()).length() == 0) {
 			return _bDefault;
@@ -272,7 +271,7 @@ public abstract class NumberUtil {
 	 * @param _bDefault default value
 	 * @return Returns the default boolean value if the string value is empty; else, returns the boolean value converted.
 	 */
-	public final static boolean intToBool(String _sValue, String _sDesc) {
+	public final static boolean intToBoolean(String _sValue, String _sDesc) {
 		int nValue = toInt(_sValue, _sDesc);
 		return (nValue != INT_FALSE);
 	}
@@ -285,7 +284,7 @@ public abstract class NumberUtil {
 	 * @param _bDefault default value
 	 * @return Returns the default boolean value if the string value is empty; else, returns the boolean value converted.
 	 */
-	public final static boolean intToBool(String _sValue, String _sDesc,
+	public final static boolean intToBoolean(String _sValue, String _sDesc,
 			boolean _bDefault) {
 		int nValue = toInt(_sValue, (_bDefault ? INT_TRUE : INT_FALSE));
 		return (nValue != INT_FALSE);
@@ -528,7 +527,7 @@ public abstract class NumberUtil {
 				case 'f':
 				case 'F':
 					try {
-						Float f = NumberUtil.createFloat(numeric);
+						Float f = Numbers.createFloat(numeric);
 						if (!(f.isInfinite() || (f.floatValue() == 0.0F && !allZeros))) {
 							// If it's too big for a float or the float value = 0 and the string
 							// has non-zeros in it, then float does not have the precision we want
@@ -542,7 +541,7 @@ public abstract class NumberUtil {
 				case 'd':
 				case 'D':
 					try {
-						Double d = NumberUtil.createDouble(numeric);
+						Double d = Numbers.createDouble(numeric);
 						if (!(d.isInfinite() || (d.floatValue() == 0.0D && !allZeros))) {
 							return d;
 						}

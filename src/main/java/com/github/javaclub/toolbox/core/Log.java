@@ -14,7 +14,6 @@ import java.util.Date;
 import com.github.javaclub.toolbox.Constants;
 import com.github.javaclub.toolbox.util.DateUtil;
 import com.github.javaclub.toolbox.util.FileUtil;
-import com.github.javaclub.toolbox.util.MessageUtil;
 
 import org.springframework.util.StringUtils;
 
@@ -38,7 +37,7 @@ public class Log {
 	 *
 	 * @param 要记录的信息
 	 */
-	public static void write(String message) {
+	public static void i(String message) {
 		File logFile = ensureLogFile();
 		if(null == logFile) return;
 		String timePrefix = DateUtil.getFormat(new Date(), timeFormat);
@@ -51,10 +50,10 @@ public class Log {
 	 * @param message 带有格式的混合信息内容
 	 * @param arr 匹配格式的内容
 	 */
-	public static void write(String message, Object[] arr) {
+	public static void i(String message, Object[] arr) {
 		File logFile = ensureLogFile();
 		if(null == logFile) return;
-		String info = MessageUtil.format(message, arr);
+		String info = Messages.format(message, arr);
 		String timePrefix = DateUtil.getFormat(new Date(), timeFormat);
 		FileUtil.writeText(logFile, timePrefix + " - " + info, true);
 	}
