@@ -23,7 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.github.javaclub.toolbox.core.JRuntimeException;
-import com.github.javaclub.toolbox.core.MessageFormatter;
+import com.github.javaclub.toolbox.core.Messages;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -1567,7 +1567,7 @@ public final class StringUtil {
 	 * @return The formatted message
 	 */
 	public static final String format(String message, Object arg) {
-		return MessageFormatter.format(message, new Object[] { arg });
+		return Messages.format(message, new Object[] { arg });
 	}
 
 	/**
@@ -1588,7 +1588,7 @@ public final class StringUtil {
 	 * @return The formatted message
 	 */
 	public static final String format(final String message, Object arg1, Object arg2) {
-		return MessageFormatter.format(message, new Object[] { arg1, arg2 });
+		return Messages.format(message, new Object[] { arg1, arg2 });
 	}
 
 	/**
@@ -1600,7 +1600,7 @@ public final class StringUtil {
 	 * @return The formatted message
 	 */
 	public final static String format(final String message, final Object[] args) {
-		return MessageFormatter.format(message, args);
+		return Messages.format(message, args);
 	}
 
 	/**

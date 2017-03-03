@@ -62,7 +62,7 @@ import java.util.Map;
  * @version $Id: MessageFormatter.java,v 1.2 2011/03/03 03:39:41 gerald.chen Exp $
  */
 @SuppressWarnings("unchecked")
-public class MessageFormatter {
+public class Messages {
 
 	static final char DELIM_START = '{';
 	static final char DELIM_STOP = '}';

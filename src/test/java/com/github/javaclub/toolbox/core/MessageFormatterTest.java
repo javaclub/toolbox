@@ -21,7 +21,7 @@ public class MessageFormatterTest {
 
 	@Test
 	public void testFormat() {
-		String target = MessageFormatter.format("Hi, {}, This is my mum, {}", "Tom", "CHINA");
+		String target = Messages.format("Hi, {}, This is my mum, {}", "Tom", "CHINA");
 		String expect = "Hi, Tom, This is my mum, CHINA";
 		assertTrue(target.equals(expect));
 	}
