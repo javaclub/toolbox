@@ -5,7 +5,7 @@
  *
  */
 
-package com.github.javaclub.toolbox.util;
+package com.github.javaclub.toolbox.core;
 
 import com.github.javaclub.toolbox.core.Log;
 import com.github.javaclub.toolbox.core.Strings;
@@ -23,7 +23,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
  * @version $Id: LogUtilTest.java 59 2011-06-27 02:14:17Z gerald.chen.hz@gmail.com $
  */
-public class LogUtilTest {
+public class LogTest {
 
 	ApplicationContext context = null;
 
