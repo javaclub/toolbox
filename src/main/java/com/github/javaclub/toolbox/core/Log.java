@@ -1,17 +1,20 @@
 /*
- * @(#)LogUtil.java	2011-2-23
+ * @(#)Log.java	2011-2-23
  *
  * Copyright (c) 2011. All Rights Reserved.
  *
  */
 
-package com.github.javaclub.toolbox.util;
+package com.github.javaclub.toolbox.core;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
 import com.github.javaclub.toolbox.Constants;
+import com.github.javaclub.toolbox.util.DateUtil;
+import com.github.javaclub.toolbox.util.FileUtil;
+import com.github.javaclub.toolbox.util.MessageUtil;
 
 import org.springframework.util.StringUtils;
 
@@ -19,9 +22,9 @@ import org.springframework.util.StringUtils;
  * 日志记录工具类
  *
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
- * @version $Id: LogUtil.java 80 2011-06-29 07:13:50Z gerald.chen.hz@gmail.com $
+ * @version $Id: Log.java 80 2011-06-29 07:13:50Z gerald.chen.hz@gmail.com $
  */
-public class LogUtil {
+public class Log {
 	
 	private static String timeFormat = "yyyy/MM/dd HH:mm:ss";
 	
@@ -75,15 +78,15 @@ public class LogUtil {
 	}
 
 	public void setTimeFormat(String timeFormat) {
-		LogUtil.timeFormat = timeFormat;
+		Log.timeFormat = timeFormat;
 	}
 
 	public void setLogPath(String logPath) {
-		LogUtil.logPath = logPath;
+		Log.logPath = logPath;
 	}
 
 	public void setSingleFile(boolean singleFile) {
-		LogUtil.singleFile = singleFile;
+		Log.singleFile = singleFile;
 	}
 	
 }
