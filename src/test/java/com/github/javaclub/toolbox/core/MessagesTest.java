@@ -17,7 +17,7 @@ import org.junit.Test;
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
  * @version $Id: MessageFormatterTest.java 2017-3-4 12:53:44 Exp $
  */
-public class MessageFormatterTest {
+public class MessagesTest {
 
 	@Test
 	public void testFormat() {
