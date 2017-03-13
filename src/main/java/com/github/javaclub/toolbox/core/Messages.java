@@ -1,10 +1,10 @@
 /*
- * @(#)MessageUtil.java	2010-2-22
+ * @(#)MessageFormatter.java	2010-2-22
  *
  * Copyright (c) 2010 by gerald. All Rights Reserved.
  */
 
-package com.github.javaclub.toolbox.util;
+package com.github.javaclub.toolbox.core;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +38,7 @@ import java.util.Map;
  * escape the '}' character. For example,
  * 
  * <pre>
- * MessageFormatter.format(&quot;Set \\{} is not equal to {}.&quot;, &quot;1,2&quot;);
+ * Messages.format(&quot;Set \\{} is not equal to {}.&quot;, &quot;1,2&quot;);
  * </pre>
  * 
  * will return the string "Set {} is not equal to 1,2.".
@@ -47,7 +47,7 @@ import java.util.Map;
  * The escaping behavior just described can be overridden by escaping the escape character '\'. Calling
  * 
  * <pre>
- * MessageUtil.format(&quot;File name is C:\\\\{}.&quot;, &quot;file.zip&quot;);
+ * Messages.format(&quot;File name is C:\\\\{}.&quot;, &quot;file.zip&quot;);
  * </pre>
  * 
  * will return the string "File name is C:\file.zip".
@@ -58,11 +58,10 @@ import java.util.Map;
  *     {@link #format(String, Object[])} methods for
  * more details.
  * 
- * @author <a href="mailto:gerald.chen@qq.com">Gerald Chen</a>
- * @version $Id: MessageUtil.java 69 2011-06-27 05:41:23Z gerald.chen.hz@gmail.com $
+ * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
+ * @version $Id: Messages.java,v 1.2 2011/03/03 03:39:41 gerald.chen Exp $
  */
-@SuppressWarnings("unchecked")
-public class MessageUtil {
+public class Messages {
 
 	static final char DELIM_START = '{';
 	static final char DELIM_STOP = '}';
@@ -96,7 +95,7 @@ public class MessageUtil {
 	 * For example,
 	 * 
 	 * <pre>
-	 * MessageFormatter.format(&quot;Hi {}. My name is {}.&quot;, &quot;Alice&quot;, &quot;Bob&quot;);
+	 * Messages.format(&quot;Hi {}. My name is {}.&quot;, &quot;Alice&quot;, &quot;Bob&quot;);
 	 * </pre>
 	 * 
 	 * will return the string "Hi Alice. My name is Bob.".
@@ -109,7 +108,7 @@ public class MessageUtil {
 	public static final String format(final String messagePattern, Object arg1, Object arg2) {
 		return format(messagePattern, new Object[] { arg1, arg2 });
 	}
-
+	
 	/**
 	 * Same principle as the {@link #format(String, Object)} and {@link #format(String, Object, Object)} methods except that any number of
 	 * arguments can be passed in an array.

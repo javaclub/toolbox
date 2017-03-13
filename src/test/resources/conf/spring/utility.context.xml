@@ -12,7 +12,7 @@
 		<property name="propertyFile" value="config.properties" />
 	</bean>
 	
-	<bean id="logger" class="com.github.javaclub.toolbox.util.LogUtil">
+	<bean id="logger" class="com.github.javaclub.toolbox.core.Log">
 		<property name="timeFormat" value="yyyy/MM/dd HH:mm:ss,SSS" />
 		<property name="logPath" value="d:/temp/log/" />
 	</bean>

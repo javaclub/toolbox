@@ -8,13 +8,11 @@ package com.github.javaclub.toolbox.core.net;
 
 import java.io.File;
 
-import com.github.javaclub.toolbox.core.net.DownloadUtil;
-import com.github.javaclub.toolbox.core.net.UrlFetcher;
-import com.github.javaclub.toolbox.util.StringUtil;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.github.javaclub.toolbox.core.Strings;
 
 /**
  * desc
@@ -58,7 +56,7 @@ public class UrlFetcherTest {
 	public void testMultiFetch2() {
 		String source = DownloadUtil.download("http://cms.17ext.com/extpic/2009/0504/ext-icon-300.html").getText();
 		String regex = "/uploads/allimg/090504/.*gif";
-		String[] links = StringUtil.multiFind(source, regex);
+		String[] links = Strings.multiFind(source, regex);
 		for (int i = 0; i < links.length; i++) {
 			links[i] = "http://cms.17ext.com" + links[i];
 		}
@@ -100,7 +98,7 @@ public class UrlFetcherTest {
 		dest = "D:/tmp/digfile/baidu/hi/jx2";
 		String[] babycat = new String[100];
 		for (int i = 0; i < 100; i++) {
-			babycat[i] = from + "jx2/j_" + StringUtil.alignRight(String.valueOf(i), 4, '0') + ".gif";
+			babycat[i] = from + "jx2/j_" + Strings.alignRight(String.valueOf(i), 4, '0') + ".gif";
 		}
 		UrlFetcher.multiFetch(babycat, dest, true);
 		

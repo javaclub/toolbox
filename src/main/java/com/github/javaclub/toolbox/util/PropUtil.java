@@ -19,8 +19,6 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import com.github.javaclub.toolbox.core.JRuntimeException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
@@ -160,7 +158,7 @@ public class PropUtil {
 	public static Properties setValue(String filepath, String key, String value) throws IOException {
 		File file = new File(filepath);
 		if(!file.exists()) {
-			throw new JRuntimeException("The properties file [" + filepath + "] doesn't exist.");
+			throw new RuntimeException("The properties file [" + filepath + "] doesn't exist.");
 		}
 		FileOutputStream out = null;
 		try {

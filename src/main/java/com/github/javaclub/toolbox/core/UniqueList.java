@@ -20,7 +20,7 @@ public class UniqueList<T> extends ArrayList<T> {
 
 	private static final long serialVersionUID = -4415279469780082174L;
 
-    public boolean add( T t ){
+    public boolean add( T t ) {
         if ( contains( t ) )
             return false;
         return super.add( t );

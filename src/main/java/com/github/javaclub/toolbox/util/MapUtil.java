@@ -30,7 +30,6 @@ public abstract class MapUtil {
 	 * @param map
 	 * @return size为2的List
 	 */
-	@SuppressWarnings("unchecked")
 	public static <K, V> List<List> mapToList(Map<K, V> map) {
 		List<K> fields = new ArrayList<K>();
 		List<V> values = new ArrayList<V>();

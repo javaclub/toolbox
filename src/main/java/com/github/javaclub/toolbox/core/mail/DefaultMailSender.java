@@ -19,9 +19,9 @@ import javax.mail.internet.MimeMessage;
 import com.github.javaclub.toolbox.Constants;
 import com.github.javaclub.toolbox.core.JRuntimeException;
 import com.github.javaclub.toolbox.core.Message;
+import com.github.javaclub.toolbox.core.Numbers;
 import com.github.javaclub.toolbox.core.PropertySystem;
 import com.github.javaclub.toolbox.core.base64.Base64;
-import com.github.javaclub.toolbox.util.NumberUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -113,7 +113,7 @@ public class DefaultMailSender extends AbstractMailSender implements Initializin
 			authenticator = authenticators.get(0);
 		} else {
 			// 在多个邮件配置中随即产生一个
-			authenticator = authenticators.get(NumberUtil.random(count));
+			authenticator = authenticators.get(Numbers.random(count));
 			if (LOG.isInfoEnabled()) {
 				LOG.info("Send mail using " + authenticator.getMailuser() + "@"
 						+ authenticator.getMailhost());
