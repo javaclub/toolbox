@@ -24,8 +24,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
 
-import com.github.javaclub.toolbox.util.NumberUtil;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dom4j.Attribute;
@@ -37,6 +35,8 @@ import org.dom4j.io.DocumentSource;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
+
+import com.github.javaclub.toolbox.core.Numbers;
 
 /**
  * A utility class for Xml procesing.
@@ -432,7 +432,7 @@ public class XmlUtil {
 	public final static int getAttributeValueAsInt(Element _xmlElement,
 			String _sAttrName) {
 		String sValue = getAttributeValueTrim(_xmlElement, _sAttrName);
-		return NumberUtil.toInt(sValue, _sAttrName);
+		return Numbers.toInt(sValue, _sAttrName);
 	}
 
 	/**
@@ -446,7 +446,7 @@ public class XmlUtil {
 	public final static int getAttributeValueAsInt(Element _xmlElement,
 			String _sAttrName, int _nDefault) {
 		String sValue = getAttributeValueTrim(_xmlElement, _sAttrName);
-		return NumberUtil.toInt(sValue, _nDefault);
+		return Numbers.toInt(sValue, _nDefault);
 	}
 
 	/**
@@ -459,7 +459,7 @@ public class XmlUtil {
 	public final static long getAttributeValueAsLong(Element _xmlElement,
 			String _sAttrName) {
 		String sValue = getAttributeValueTrim(_xmlElement, _sAttrName);
-		return NumberUtil.toLong(sValue, _sAttrName);
+		return Numbers.toLong(sValue, _sAttrName);
 	}
 
 	/**
@@ -473,7 +473,7 @@ public class XmlUtil {
 	public final static long getAttributeValueAsLong(Element _xmlElement,
 			String _sAttrName, long _lDefault) {
 		String sValue = getAttributeValueTrim(_xmlElement, _sAttrName);
-		return NumberUtil.toLong(sValue, _lDefault);
+		return Numbers.toLong(sValue, _lDefault);
 	}
 
 	/**
@@ -488,7 +488,7 @@ public class XmlUtil {
 	public final static boolean getAttributeValueAsBool(Element _xmlElement,
 			String _sAttrName, boolean _bDefault) {
 		String sValue = getAttributeValueTrim(_xmlElement, _sAttrName);
-		return NumberUtil.toBool(sValue, _bDefault);
+		return Numbers.toBoolean(sValue, _bDefault);
 	}
 
 	/**
@@ -501,7 +501,7 @@ public class XmlUtil {
 	public final static boolean getAttributeIntValueAsBool(Element _xmlElement,
 			String _sAttrName) {
 		String sValue = getAttributeValueTrim(_xmlElement, _sAttrName);
-		return NumberUtil.intToBool(sValue, _sAttrName);
+		return Numbers.intToBoolean(sValue, _sAttrName);
 	}
 
 	/**
@@ -515,7 +515,7 @@ public class XmlUtil {
 	public final static boolean getAttributeIntValueAsBool(Element _xmlElement,
 			String _sAttrName, boolean _bDefault) {
 		String sValue = getAttributeValueTrim(_xmlElement, _sAttrName);
-		return NumberUtil.intToBool(sValue, _sAttrName, _bDefault);
+		return Numbers.intToBoolean(sValue, _sAttrName, _bDefault);
 	}
 
 	// =============================================================================
@@ -530,7 +530,7 @@ public class XmlUtil {
 	 */
 	public final static int getChildTextAsInt(Element _xmlElement, String _sChildName) {
 		String sValue = _xmlElement.elementTextTrim(_sChildName);
-		return NumberUtil.toInt(sValue, _sChildName);
+		return Numbers.toInt(sValue, _sChildName);
 	}
 
 	/**
@@ -544,7 +544,7 @@ public class XmlUtil {
 	public final static int getChildTextAsInt(Element _xmlElement, String _sChildName,
 			int _nDefault) {
 		String sValue = _xmlElement.elementTextTrim(_sChildName);
-		return NumberUtil.toInt(sValue, _nDefault);
+		return Numbers.toInt(sValue, _nDefault);
 	}
 
 	/**
@@ -556,7 +556,7 @@ public class XmlUtil {
 	 */
 	public final static long getChildTextAsLong(Element _xmlElement, String _sChildName) {
 		String sValue = _xmlElement.elementTextTrim(_sChildName);
-		return NumberUtil.toLong(sValue, _sChildName);
+		return Numbers.toLong(sValue, _sChildName);
 	}
 
 	/**
@@ -570,7 +570,7 @@ public class XmlUtil {
 	public final static long getChildTextAsLong(Element _xmlElement,
 			String _sChildName, long _lDefault) {
 		String sValue = _xmlElement.elementTextTrim(_sChildName);
-		return NumberUtil.toLong(sValue, _lDefault);
+		return Numbers.toLong(sValue, _lDefault);
 	}
 
 	/**
@@ -585,7 +585,7 @@ public class XmlUtil {
 	public final static boolean getChildTextAsBool(Element _xmlElement,
 			String _sChildName, boolean _bDefault) {
 		String sValue = _xmlElement.elementTextTrim(_sChildName);
-		return NumberUtil.toBool(sValue, _bDefault);
+		return Numbers.toBoolean(sValue, _bDefault);
 	}
 
 	/**
@@ -598,7 +598,7 @@ public class XmlUtil {
 	public final static boolean getChildIntTextAsBool(Element _xmlElement,
 			String _sChildName) {
 		String sValue = _xmlElement.elementTextTrim(_sChildName);
-		return NumberUtil.intToBool(sValue, _sChildName);
+		return Numbers.intToBoolean(sValue, _sChildName);
 	}
 
 	/**
@@ -612,7 +612,7 @@ public class XmlUtil {
 	public final static boolean getChildIntTextAsBool(Element _xmlElement,
 			String _sChildName, boolean _bDefault) {
 		String sValue = _xmlElement.elementTextTrim(_sChildName);
-		return NumberUtil.intToBool(sValue, _sChildName, _bDefault);
+		return Numbers.intToBoolean(sValue, _sChildName, _bDefault);
 	}
 
 	// =============================================================================

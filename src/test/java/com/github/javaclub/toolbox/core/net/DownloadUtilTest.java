@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.github.javaclub.toolbox.core.Strings;
 import com.github.javaclub.toolbox.util.FileUtil;
-import com.github.javaclub.toolbox.util.StringUtil;
 
 import org.junit.Test;
 
@@ -86,8 +86,8 @@ public class DownloadUtilTest {
 				if(response.isText()) {
 					String s = response.getText(); 
 					if( s.indexOf(tmp) > 0 ) {
-						String[] kk = StringUtil.substringsBetween(s, tmp, "\"");
-						if(null != kk && kk.length > 0 && StringUtil.isNotEmpty(kk[0])) {
+						String[] kk = Strings.substringsBetween(s, tmp, "\"");
+						if(null != kk && kk.length > 0 && Strings.isNotEmpty(kk[0])) {
 							System.out.println(kk[0]);
 							// String[] ss = StringUtils.substringsBetween(kk[0], "bao/uploaded/", ".jpg\" ");
 							/*if(null != ss && ss.length > 0 && StringUtils.isNotEmpty(ss[0])) {

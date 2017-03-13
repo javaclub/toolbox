@@ -20,9 +20,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.javaclub.toolbox.core.JRuntimeException;
+import com.github.javaclub.toolbox.core.Numbers;
 import com.github.javaclub.toolbox.core.Strings;
 import com.github.javaclub.toolbox.util.DateUtil;
-import com.github.javaclub.toolbox.util.NumberUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -137,14 +137,14 @@ public class JavaTypeHandlers {
 class BigDecimalHandler implements IDataTypeHandler {
 
 	public Object getValue(String fieldValue) {
-		return NumberUtil.createBigDecimal(fieldValue);
+		return Numbers.createBigDecimal(fieldValue);
 	}
 }
 
 class BigIntegerHandler implements IDataTypeHandler {
 
 	public Object getValue(String fieldValue) {
-		return NumberUtil.createBigInteger(fieldValue);
+		return Numbers.createBigInteger(fieldValue);
 	}
 }
 

@@ -5,7 +5,7 @@
  *
  */
 
-package com.github.javaclub.toolbox.util;
+package com.github.javaclub.toolbox.core;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,14 +16,16 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * desc
+ * 基本的数学计算
  *
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
- * @version $Id: MathUtil.java 131 2011-07-19 10:54:36Z gerald.chen.hz@gmail.com $
+ * @version $Id: Maths.java 131 2011-07-19 10:54:36Z gerald.chen.hz@gmail.com $
  */
-public abstract class MathUtil {
+public abstract class Maths {
 	
-	/** 默认除法运算精度,即结果保留的小数位数 */
+	/**
+	 * 默认除法运算精度,即结果保留的小数位数 
+	 */
 	private static final int DEF_DIV_SCALE = 10;
 
 	/**
@@ -655,7 +657,7 @@ public abstract class MathUtil {
 	 * @see IEEE754rUtils#min(double, double, double) for a version of this method that handles NaN differently
 	 */
 	public static double min(double a, double b, double c) {
-		return Math.min(Math.min(a, b), c);
+		return Maths.min(Maths.min(a, b), c);
 	}
 
 	/**
@@ -775,7 +777,7 @@ public abstract class MathUtil {
 	 * @see IEEE754rUtils#max(double, double, double) for a version of this method that handles NaN differently
 	 */
 	public static double max(double a, double b, double c) {
-		return Math.max(Math.max(a, b), c);
+		return Maths.max(Maths.max(a, b), c);
 	}
 
 	/**
@@ -928,6 +930,22 @@ public abstract class MathUtil {
 			return +1;
 		}
 	}
+	
+	public static int[] sort(int[] unsorted, boolean asc) {
+    	int temp = 0; boolean flag = false;
+        for (int i = 0; i < unsorted.length; i++) {
+            for (int j = i; j < unsorted.length; j++) {
+            	flag = asc ? (unsorted[i] > unsorted[j]) : (unsorted[i] < unsorted[j]);
+                if (flag) {
+                    temp = unsorted[i];
+                    unsorted[i] = unsorted[j];
+                    unsorted[j] = temp;
+                }
+            }
+        }
+        
+        return unsorted;
+    }
 	
 	/**
 	 * 将十进制数转为2的N次相加

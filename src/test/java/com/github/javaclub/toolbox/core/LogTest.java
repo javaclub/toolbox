@@ -5,10 +5,10 @@
  *
  */
 
-package com.github.javaclub.toolbox.util;
+package com.github.javaclub.toolbox.core;
 
+import com.github.javaclub.toolbox.core.Log;
 import com.github.javaclub.toolbox.core.Strings;
-import com.github.javaclub.toolbox.util.LogUtil;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,13 +18,12 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * desc
+ * 内置日志记录工具
  * 
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
- * @version $Id: LogUtilTest.java 59 2011-06-27 02:14:17Z
- *          gerald.chen.hz@gmail.com $
+ * @version $Id: LogUtilTest.java 59 2011-06-27 02:14:17Z gerald.chen.hz@gmail.com $
  */
-public class LogUtilTest {
+public class LogTest {
 
 	ApplicationContext context = null;
 
@@ -43,7 +42,7 @@ public class LogUtilTest {
 	@Test
 	public void testWriteString() {
 		for (int i = 0; i < 10; i++) {
-			LogUtil.write("哈哈你好我是中国" + i);
+			Log.i("哈哈你好我是中国" + i);
 		}
 
 	}
@@ -51,7 +50,7 @@ public class LogUtilTest {
 	@Test
 	public void testWriteStringObjectArray() {
 		for (int i = 0; i < 10; i++) {
-			LogUtil.write("哈哈{} 你好我是中国人{}" + i, new String[] {
+			Log.i("哈哈{} 你好我是中国人{}" + i, new String[] {
 					Strings.random(6, "4234jhrewrfwef"),
 					Strings.random(3, "4234jhrewrfwef") });
 		}

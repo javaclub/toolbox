@@ -123,8 +123,7 @@ public final class DateUtil {
 	 * @return a java.util.Date
 	 */
 	public static java.util.Date toDate(java.sql.Date date) {
-		// return new java.util.Date(date.getTime());
-		return date;
+		return new java.util.Date(date.getTime());
 	}
 	
 	/**
@@ -136,8 +135,7 @@ public final class DateUtil {
 	 * @return a java.util.Date
 	 */
 	public static java.util.Date toDate(java.sql.Timestamp timestamp) {
-		// return new java.util.Date(timestamp.getTime());
-		return timestamp;
+		return new java.util.Date(timestamp.getTime());
 	}
 	
 	/**
@@ -159,7 +157,7 @@ public final class DateUtil {
 		if (obj instanceof String) {
 			return toDate(obj.toString()); 
 		}
-		throw new JRuntimeException("the parameter [" + obj + " can't be converted to java.util.Date");
+		throw new RuntimeException("the parameter [" + obj + " can't be converted to java.util.Date");
 	}
 
 	/**
@@ -199,13 +197,13 @@ public final class DateUtil {
 			}
 		}
 		if (null == sdf) {
-			throw new IllegalArgumentException("the format of [" + input + "] is not supported...");
+			throw new IllegalArgumentException("the format of [" + input + "] is not supported.");
 		}
 		try {
 			return sdf.parse(dealStr);
 		} catch (ParseException e) {
 			if(LOG.isWarnEnabled()) {
-				LOG.warn("error occured when parsing String [" + input + "] to java.util.Date with the format [" 
+				LOG.warn("Error occured when parsing String [" + input + "] to java.util.Date with the format [" 
 						+ sdf.toPattern() + "].");
 			}
 		}
