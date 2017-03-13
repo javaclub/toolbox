@@ -25,5 +25,13 @@ public class MessagesTest {
 		String expect = "Hi, Tom, This is my mum, CHINA";
 		assertTrue(target.equals(expect));
 	}
+	
+
+	@Test
+	public void testFormat_1() {
+		String target = Messages.format("Hi, Versy {}", "Nice");
+		String expect = "Hi, Versy Nice";
+		assertTrue(target.equals(expect));
+	}
 
 }

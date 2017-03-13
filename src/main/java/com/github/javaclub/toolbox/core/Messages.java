@@ -108,7 +108,7 @@ public class Messages {
 	public static final String format(final String messagePattern, Object arg1, Object arg2) {
 		return format(messagePattern, new Object[] { arg1, arg2 });
 	}
-
+	
 	/**
 	 * Same principle as the {@link #format(String, Object)} and {@link #format(String, Object, Object)} methods except that any number of
 	 * arguments can be passed in an array.
