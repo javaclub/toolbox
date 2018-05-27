@@ -29,7 +29,7 @@ public class PasswordEncryptor {
     }
 
     private static final SecureRandom secureRandom = new SecureRandom();
-
+    
     /**
      * Encodes the specified password.
      * 
@@ -111,8 +111,10 @@ public class PasswordEncryptor {
 		// Ccf73KkuWy3gx2CRuMLxgNL8MeAu4B/jhPck2w==
 		// Zsdfkjr0vDEj5UIk1SRDOTbz1mEgq+6ZgwqJkA==
 		// bxbQS8+/piWAwFcse1op7ZFWNMQdq88mmUc/Cw==
-		System.out.println(encrypted.length());
+		// lV2g7Db3A0IsOhlno4pwGb8yEcTm6cZxZ5Vzdg==
+		// sS+IxdSPvu1/64Y1N+R3BefgavTCyAIlNnnyeA==
+		System.out.println(encrypted.length() + "\t" + encrypted);
 		
-		System.out.println(PasswordEncryptor.validate("Zsdfkjr0vDEj5UIk1SRDOTbz1mEgq+6ZgwqJkA==", password));
+		System.out.println(PasswordEncryptor.validate(encrypted, password));
 	}
 }
