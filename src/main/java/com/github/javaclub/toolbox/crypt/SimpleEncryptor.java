@@ -43,9 +43,14 @@ public class SimpleEncryptor {
     }
     
     public static void main(String[] args) {
-		String s = "haha我";
+		String s = "haha我54/^6fre/wNJJ*+=-_Mggh";
 		String encrypt = SimpleEncryptor.encrypt(s);
 		System.out.println(encrypt);
+		
+		String deText = SimpleEncryptor.decrypt(encrypt);
+		System.out.println(deText);
+		
+		System.out.println(s.equals(deText));
 	}
 
 }
