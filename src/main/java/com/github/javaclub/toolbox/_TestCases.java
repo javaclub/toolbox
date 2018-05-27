@@ -19,10 +19,6 @@ import com.github.javaclub.toolbox.ToolBox.Base64;
  */
 public class _TestCases {
 
-	public static void main(String[] args) {
-		
-	}
-	
 	@Test
 	public void testUrlSafeBase64() {
 		String text = "I love the 43645===6jnhjsfds%%*^54767+-_==4Hfdefd395``~`* Word 亲爱的世界";
