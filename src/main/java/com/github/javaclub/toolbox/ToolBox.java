@@ -42,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -80,6 +81,11 @@ public interface ToolBox {
 		public static final String UNKNOWN = "unknown";
 		
 		public static final int INDEX_NOT_FOUND = -1;
+		
+		private static final Random RANDOM = new Random();
+		private static final String CHARS = "AcdeopqrsSTUVWCD4abXYZ01IJKLlm2B"
+								+ "3fghijk678EFGHnt5MNOPQR9uvwxyz"
+								+ "mmYu43=48$#@!78YzWxQaSD3#iOpT";
 		
 		public final static String format(final String pattern, final Object ... args) {
 			return MessageFormatter.format(pattern, args);
@@ -402,6 +408,106 @@ public interface ToolBox {
 		    	}
 		    	return list.toArray(new String[list.size()]);
 	    }
+	    
+	    /**
+		 * 产生固定长度的随机字符串
+		 *
+		 * @param length 长度
+		 * @return 随机字符串
+		 */
+		public static String fixed(int length) {
+			return random(length, CHARS);
+		}
+		
+		/**
+		 * 产生长度随机(不超过固定长度max,至少为1)的随机字符串
+		 *
+		 * @param max 最大长度
+		 * @return 长度随机(不超过固定长度max)的随机字符串
+		 */
+		public static String random(int max) {
+			return random(1, max);
+		}
+		
+		/**
+		 * 产生长度随机(不超过固定长度max,至少为min)的随机字符串
+		 *
+		 * @param min 最小长度
+		 * @param max 最大长度
+		 * @return 随机字符串
+		 */
+		public static String random(int min, int max) {
+			int count = Numbers.random(min, max);
+			return fixed(count);
+		}
+		
+		public static String random(int count, String chars) {
+			if (chars == null) {
+				return random(count, 0, 0, false, false, null, RANDOM);
+			}
+			return random(count, 0, chars.length(), false, false, chars
+					.toCharArray(), RANDOM);
+		}
+		
+		static String random(int count, int start, int end, 
+							boolean letters, boolean numbers, 
+							char[] chars, Random random) {
+			if (count == 0) {
+				return "";
+			} else if (count < 0) {
+				throw new IllegalArgumentException("Requested random string length " + count + " is less than 0.");
+			}
+			if ((start == 0) && (end == 0)) {
+				end = 'z' + 1;
+				start = ' ';
+				if (!letters && !numbers) {
+					start = 0;
+					end = Integer.MAX_VALUE;
+				}
+			}
+
+			char[] buffer = new char[count];
+			int gap = end - start;
+
+			while (count-- != 0) {
+				char ch;
+				if (chars == null) {
+					ch = (char) (random.nextInt(gap) + start);
+				} else {
+					ch = chars[random.nextInt(gap) + start];
+				}
+				if ((letters && Character.isLetter(ch)) || (numbers && Character.isDigit(ch))
+						|| (!letters && !numbers)) {
+					if (ch >= 56320 && ch <= 57343) {
+						if (count == 0) {
+							count++;
+						} else {
+							// low surrogate, insert high surrogate after putting it in
+							buffer[count] = ch;
+							count--;
+							buffer[count] = (char) (55296 + random.nextInt(128));
+						}
+					} else if (ch >= 55296 && ch <= 56191) {
+						if (count == 0) {
+							count++;
+						} else {
+							// high surrogate, insert low surrogate before putting it in
+							buffer[count] = (char) (56320 + random.nextInt(128));
+							count--;
+							buffer[count] = ch;
+						}
+					} else if (ch >= 56192 && ch <= 56319) {
+						// private high surrogate, no effing clue, so skip it
+						count++;
+					} else {
+						buffer[count] = ch;
+					}
+				} else {
+					count++;
+				}
+			}
+			return new String(buffer);
+		}
 	    
 	    static String[] splitWorker(String str, char separatorChar, boolean preserveAllTokens) {
 	        // Performance tuned for 2.0 (JDK1.4)
@@ -1646,6 +1752,61 @@ public interface ToolBox {
 	 * 数字处理
 	 */
 	public class Numbers {
+		
+		private static Random random = new Random();
+		
+		public static int random(int max) {
+			Objects.requireTrue(max > 0, "the parameter [max]'s value must be a positive Integer.");
+			return (int) (Math.random() * max);
+		}
+		
+		public static long random(long max) {
+			Objects.requireTrue(max > 0, "the parameter [max]'s value must be a positive Integer.");
+			return (long) (Math.random() * max);
+		}
+		
+		public static double random(double max) {
+			Objects.requireTrue(max > 0, "the parameter [max]'s value must be a positive Double.");
+			return Math.random() * max;
+		}
+		
+		/**
+		 * Returns a pseudorandom, uniformly distributed int value between min
+		 * (inclusive) and the max (inclusive)
+		 */
+		public static int random(int min, int max) {
+			return random.nextInt(max - min + 1) + min;
+		}
+		
+		public static long random(long min, long max) {
+			return random(max - min) + min;
+		}
+
+		public static int[] random(int min, int max, int count) {
+			if (min > max) {
+				throw new IllegalArgumentException(
+						"the parameter min must be less than max.");
+			}
+			int n = max - min + 1;
+			if (count > n) {
+				throw new IllegalArgumentException(
+						"the parameter count must be no more than " + n + ".");
+			}
+			int[] span = new int[n];
+			for (int i = 0, j = min; i < n; i++, j++) {
+				span[i] = j;
+			}
+
+			// for the random Integers
+			int[] target = new int[count];
+			for (int i = 0; i < target.length; i++) {
+				int r = (int) (Math.random() * n);
+				target[i] = span[r];
+				span[r] = span[n - 1];
+				n--;
+			}
+			return target;
+		}
 		
 		public static Integer parseInt(String value) {
 			BigDecimal big = null;
