@@ -7,6 +7,7 @@
 
 package com.github.javaclub.toolbox;
 
+
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -45,7 +46,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.TreeMap;
-import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -2954,6 +2954,64 @@ public interface ToolBox {
 				}
 			} catch (Exception e) {
 			}
+		}
+	}
+	
+	/**
+	 * 红包算法
+	 */
+	public class BonusAlgorithm {
+		
+		/**
+		 * 简易版抢红包分配算法(最少每人0.01元)
+		 * 
+		 * @param money 红包总金额(元)
+		 * @param number 红包总个数
+		 * @return 红包分配金额列表
+		 */
+		public static List<BigDecimal> split(BigDecimal money, int number) {
+			Objects.requireTrue(null != money && money.doubleValue() >= number * 0.01, 
+					Strings.format("待分配的红包总金额{}不合理，分给{}人至少要有" + (number * 0.01) + "元", money, number, number*0.01));
+			Random random = new Random();
+			// 金钱，按分计算 10块等于 1000分
+			int moneyCents = money.multiply(BigDecimal.valueOf(100)).intValue();
+			// 随机数总额
+			double count = 0;
+			// 每人获得随机点数
+			double[] arrRandom = new double[number];
+			// 每人获得钱数
+			List<BigDecimal> arrMoney = new ArrayList<BigDecimal>(number);
+			// 循环人数 随机点
+			for (int i = 0; i < arrRandom.length; i++) {
+				int r = random.nextInt((number) * 99) + 1;
+				count += r;
+				arrRandom[i] = r;
+			}
+			
+			int c = 0; // 已经发出的红包总金额
+			// 计算每人拆红包获得金额
+			for (int i = 0; i < arrRandom.length; i++) {
+				// 每人获得随机数相加 计算每人占百分比
+				Double x = new Double(arrRandom[i] / count);
+				// 每人通过百分比获得金额
+				int m = (int) Math.floor(x * moneyCents);
+				// 如果获得 0 金额，则设置最小值 1分钱
+				if (m == 0) {
+					m = 1;
+				}
+				// 计算获得总额
+				c += m;
+				// 如果不是最后一个人则正常计算
+				if (i < arrRandom.length - 1) {
+					arrMoney.add(new BigDecimal(m).divide(new BigDecimal(100)));
+				} else {
+					// 如果是最后一个人，则把剩余的钱数给最后一个人
+					arrMoney.add(new BigDecimal(moneyCents - c + m).divide(new BigDecimal(100)));
+				}
+			}
+			// 随机打乱每人获得金额
+			Collections.shuffle(arrMoney);
+			return arrMoney;
 		}
 	}
 	
