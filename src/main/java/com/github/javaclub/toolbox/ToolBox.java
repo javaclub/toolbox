@@ -29,6 +29,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -40,6 +41,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +62,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 
 /**
- * ToolBox 无须依赖任何第三方库的通用工具包，使用某些特定特性，可以看情况引入以下类库
+ * ToolBox宗旨：以轻量级工具组件为重点内容，构建稳定强健的基础工具包 <br>
+ * 尽量不依赖或少依赖任何第三方库的通用工具包，若使用某些特定功能特性，可根据实际情况引入以下类库
  * 
  * <li> com.alibaba:fastjson:1.2.47
  * <li> javax.servlet:javax.servlet-api:3.1.0
@@ -2793,6 +2796,41 @@ public interface ToolBox {
 	    public static char[] toChars(byte[] bytes, String encoding) throws CodecException {
 	        return toString(bytes, encoding).toCharArray();
 	    }
+	    
+	    /**
+		 * 
+		 * 字节转换为 16 进制字符串
+		 * 
+		 * @param b 字节
+		 * @return 字符串
+		 */
+		public static String byte2Hex( byte b ) {
+			String hex = Integer.toHexString(b);
+			if ( hex.length() > 2 ) {
+				hex = hex.substring(hex.length() - 2);
+			}
+			while ( hex.length() < 2 ) {
+				hex = "0" + hex;
+			}
+			return hex;
+		}
+		
+		/**
+		 * 
+		 * 字节数组转换为 16 进制字符串
+		 * 
+		 * @param bytes 字节数组
+		 * @return
+		 */
+		public static String byte2Hex( byte[] bytes ) {
+			Formatter formatter = new Formatter();
+			for ( byte b : bytes ) {
+				formatter.format("%02x", b);
+			}
+			String hash = formatter.toString();
+			formatter.close();
+			return hash;
+		}
 
 	    protected byte[] toBytes(Object o) {
 	        if (o == null) {
@@ -2810,35 +2848,11 @@ public interface ToolBox {
 	        }
 	    }
 
-	    protected String toString(Object o) {
-	        if (o == null) {
-	            String msg = "Argument for String conversion cannot be null.";
-	            throw new IllegalArgumentException(msg);
-	        }
-	        if (o instanceof byte[]) {
-	            return toString((byte[]) o);
-	        } else if (o instanceof char[]) {
-	            return new String((char[]) o);
-	        } else if (o instanceof String) {
-	            return (String) o;
-	        } else {
-	            return objectToString(o);
-	        }
-	    }
 
-	    protected byte[] objectToBytes(Object o) {
-	        String msg = "The " + getClass().getName() + " implementation only supports conversion to " +
-	                "byte[] if the source is of type byte[], char[] or String.  The instance provided as a method " +
-	                "argument is of type [" + o.getClass().getName() + "].  If you would like to convert " +
-	                "this argument type to a byte[], you can 1) convert the argument to a byte[], char[] or String " +
-	                "yourself and then use that as the method argument or 2) subclass " + getClass().getName() +
-	                " and override the objectToBytes(Object o) method.";
-	        throw new CodecException(msg);
-	    }
-
-	    protected String objectToString(Object o) {
-	        return o.toString();
-	    }
+		private byte[] objectToBytes(Object o) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 		public static void main(String[] args) {
 			Map<String, String> params = new HashMap<String, String>();
@@ -3098,20 +3112,46 @@ public interface ToolBox {
 		
 		/**
 		 * 取请求客户端IP
+		 * <p>
+		 *  获取客户端的IP地址的方法是：request.getRemoteAddr()，这种方法在大部分情况下都是有效的。
+		 *  但是在通过了Apache,Squid等反向代理软件就不能获取到客户端的真实IP地址了，如果通过了多级反向代理的话，
+		 *  X-Forwarded-For的值并不止一个，而是一串IP值， 究竟哪个才是真正的用户端的真实IP呢？
+		 *  答案是取X-Forwarded-For中第一个非unknown的有效IP字符串。
+		 *  例如：X-Forwarded-For：192.168.1.110, 192.168.1.120,
+		 *  192.168.1.130, 192.168.1.100 用户真实IP为： 192.168.1.110
+		 *  </p>
 		 */
 		public static String getIpAddr(HttpServletRequest request) {
-			String ip = request.getHeader("x-forwarded-for");
-			if (Strings.isBlank(ip) || Strings.equalsIgnoreCase(Strings.UNKNOWN, ip)) {
+			String ip = request.getHeader("X-Real-IP");
+			if (Strings.isBlank(ip) || Strings.UNKNOWN.equalsIgnoreCase(ip)) {
 				ip = request.getHeader("X-Forwarded-For");
+				if(ip == null || ip.length() == 0 || Strings.UNKNOWN.equalsIgnoreCase(ip)) {
+					ip = request.getHeader("x-forwarded-for");
+				}
 			}
-			if (Strings.isBlank(ip) || Strings.equalsIgnoreCase(Strings.UNKNOWN, ip)) {
+			if (Strings.isBlank(ip) || Strings.UNKNOWN.equalsIgnoreCase(ip)) {
 				ip = request.getHeader("Proxy-Client-IP");
 			}
-			if (Strings.isBlank(ip) || Strings.equalsIgnoreCase(Strings.UNKNOWN, ip)) {
+			if (Strings.isBlank(ip) || Strings.UNKNOWN.equalsIgnoreCase(ip)) {
 				ip = request.getHeader("WL-Proxy-Client-IP");
 			}
-			if (Strings.isBlank(ip) || Strings.equalsIgnoreCase(Strings.UNKNOWN, ip)) {
+			if (Strings.isBlank(ip) || Strings.UNKNOWN.equalsIgnoreCase(ip)) {
 				ip = request.getRemoteAddr();
+				if (ip.equals("127.0.0.1")) { // 根据网卡取本机配置的IP
+					InetAddress inet = null;
+					try {
+						inet = InetAddress.getLocalHost();
+						ip = inet.getHostAddress();
+					} catch (UnknownHostException e) {
+						logger.severe("Web IP can't be got." + e.toString());
+					}
+				}
+			}
+			// 对于通过多个代理的情况，第一个IP为客户端真实IP，多个IP按照','分割 "***.***.***.***".length() = 15
+			if (ip != null && ip.length() > 15) {
+				if (ip.indexOf(",") > 0) {
+					ip = ip.substring(0, ip.indexOf(","));
+				}
 			}
 			return ip;
 		}

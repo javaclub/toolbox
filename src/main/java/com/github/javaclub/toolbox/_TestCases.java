@@ -7,17 +7,29 @@
 
 package com.github.javaclub.toolbox;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.junit.Test;
 
 import com.github.javaclub.toolbox.ToolBox.Base64;
+import com.github.javaclub.toolbox.ToolBox.BonusAlgorithm;
 
 /**
- * _TestCases
+ * 测试用例
  *
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
  * @version $Id: _TestCases.java 2018年5月27日 23:17:50 Exp $
  */
 public class _TestCases {
+	
+	@Test
+	public void testBonusSplit() {
+		List<BigDecimal> list = BonusAlgorithm.split(new BigDecimal("30"), 8);
+		for (BigDecimal bigDecimal : list) {
+			System.out.println(bigDecimal);
+		}
+	}
 
 	@Test
 	public void testUrlSafeBase64() {
