@@ -3122,7 +3122,15 @@ public interface ToolBox {
 		 *  </p>
 		 */
 		public static String getIpAddr(HttpServletRequest request) {
-			String ip = request.getHeader("X-Real-IP");
+			//nginx
+			String ip = getHeaderIgnoreCase(request, "HTTP_X_REAL_IP");
+			if(Strings.isBlank(ip) || Strings.UNKNOWN.equalsIgnoreCase(ip)) {
+				ip = getHeaderIgnoreCase(request, "X-Real-IP");
+			}
+			if(Strings.isBlank(ip) || Strings.UNKNOWN.equalsIgnoreCase(ip)) {
+				ip = getHeaderIgnoreCase(request, "REMOTE_ADDR");
+			}
+			
 			if (Strings.isBlank(ip) || Strings.UNKNOWN.equalsIgnoreCase(ip)) {
 				ip = request.getHeader("X-Forwarded-For");
 				if(ip == null || ip.length() == 0 || Strings.UNKNOWN.equalsIgnoreCase(ip)) {
@@ -3156,16 +3164,23 @@ public interface ToolBox {
 			return ip;
 		}
 		
+		public static String getHeaderIgnoreCase(HttpServletRequest request, String headerKey) {
+			if(null == request || Strings.isBlank(headerKey)) {
+				return null;
+			}
+			String value = request.getHeader(headerKey);
+			if(Strings.isBlank(value)) {
+				value = request.getHeader(headerKey.toUpperCase());;
+			}
+			if(Strings.isBlank(value)) {
+				value = request.getHeader(headerKey.toLowerCase());;
+			}
+			return value;
+		}
+		
 		public static boolean isAjaxRequest(HttpServletRequest request) {
-			String header = request.getHeader("X-Requested-With");
-			if(Strings.equalsIgnoreCase("XMLHttpRequest", header)) {
-				return true;
-			}
-			header = request.getHeader("x-requested-with");
-			if(Strings.equalsIgnoreCase("XMLHttpRequest", header)) {
-				return true;
-			}
-			return false;
+			String header = getHeaderIgnoreCase(request, "X-Requested-With");
+			return Strings.equalsIgnoreCase("XMLHttpRequest", header);
 		}
 		
 		/**
