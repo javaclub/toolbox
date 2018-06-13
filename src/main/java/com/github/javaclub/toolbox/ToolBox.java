@@ -90,7 +90,7 @@ public interface ToolBox {
 		private static final Random RANDOM = new Random();
 		private static final String CHARS = "AcdeopqrsSTUVWCD4abXYZ01IJKLlm2B"
 								+ "3fghijk678EFGHnt5MNOPQR9uvwxyz"
-								+ "mmYu43=48$#@!78YzWxQaSD3#iOpT";
+								+ "mmYu43_48$#@!78Y-zWx^QaS~D3#iOpT";
 		
 		public final static String format(final String pattern, final Object ... args) {
 			return MessageFormatter.format(pattern, args);
