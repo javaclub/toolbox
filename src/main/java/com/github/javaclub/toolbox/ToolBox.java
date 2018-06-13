@@ -62,8 +62,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 
 /**
- * ToolBox宗旨：以轻量级工具组件为重点内容，构建稳定强健的基础工具包 <br>
- * 尽量不依赖或少依赖任何第三方库的通用工具包，若使用某些特定功能特性，可根据实际情况引入以下类库
+ * ToolBox宗旨：以『轻量级工具组件』为重点内容，构建『稳定强健』的基础工具包 <br>
+ * 尽量『不依赖』或『少依赖』任何第三方库的通用工具包，若使用某些特定功能特性，可根据实际情况引入以下类库
  * 
  * <li> com.alibaba:fastjson:1.2.47
  * <li> javax.servlet:javax.servlet-api:3.1.0
