@@ -103,12 +103,6 @@ public interface ToolBox {
 			}
 		}
 		
-		/**
-		 * Log messages on system console.
-		 *
-		 * @param format message pattern format
-		 * @param params parameter array
-		 */
 		public static void out(String format, Object ... params) {
 			String msg = MessageFormatter.format(format, params);
 			System.out.println(msg);
