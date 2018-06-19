@@ -124,17 +124,12 @@ public interface ToolBox {
 		}
 		
 		/**
-		 * Get current machine's cup core num.
-		 *
-		 * @return
+		 * 获取系统核心数
 		 */
 		public static int cupNum() {
 			return Runtime.getRuntime().availableProcessors();
 		}
-
-		public static void main(String[] args) {
-			Systems.out("cpu_num={}", cupNum());
-		}
+		
 	}
 	
 	/**
