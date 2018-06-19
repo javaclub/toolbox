@@ -78,6 +78,66 @@ public interface ToolBox {
 	static final Logger logger = Logger.getLogger("ToolBox");
 	
 	/**
+	 * 系统输出
+	 */
+	public final class Systems {
+		
+		private  Systems() {
+			throw new InstantiationError( "Must not instantiate this class" );
+		}
+		
+		public static String getSystemProperty(String key, String valIfNull) {
+			String val = getSystemProperty(key);
+			return val == null ? valIfNull : val;
+		}
+		
+		public static String getSystemProperty(String property) {
+			try {
+				return System.getProperty(property);
+			} catch (SecurityException ex) {
+				// we are not allowed to look at this property
+				System.err.println("Caught a SecurityException reading the system property '"
+								+ property
+								+ "'; the SystemUtils property value will default to null.");
+				return null;
+			}
+		}
+		
+		/**
+		 * Log messages on system console.
+		 *
+		 * @param format message pattern format
+		 * @param params parameter array
+		 */
+		public static void out(String format, Object ... params) {
+			String msg = MessageFormatter.format(format, params);
+			System.out.println(msg);
+		}
+		
+		/**
+		 * 一次性输出多行
+		 */
+		public static void lines(String ... lines) {
+			for (String line : lines) {
+				System.out.println(line);
+			}
+		}
+		
+		/**
+		 * Get current machine's cup core num.
+		 *
+		 * @return
+		 */
+		public static int cupNum() {
+			return Runtime.getRuntime().availableProcessors();
+		}
+
+		public static void main(String[] args) {
+			Systems.out("cpu_num={}", cupNum());
+		}
+	}
+	
+	/**
 	 * 字符串处理
 	 */
 	public class Strings {
