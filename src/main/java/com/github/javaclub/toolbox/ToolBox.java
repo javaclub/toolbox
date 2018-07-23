@@ -18,7 +18,6 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -1089,6 +1088,25 @@ public interface ToolBox {
 				}
 				
 			});
+		}
+		
+		/**
+		 * A fast way to generate A general java.util.Map
+		 */
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		public static Map generateMap(Object ... objs) {
+			Map map = new HashMap();
+			if(null == objs) {
+				return map;
+			}
+			Objects.requireTrue(objs.length % 2 == 0, "The parameter objs array length must be even number.");
+			for (int i = 0; i < objs.length; i++) {
+				if(i % 2 == 0) {
+					continue;
+				}
+				map.put(objs[i-1], objs[i]);
+			}
+			return map;
 		}
 		
 		public static Map<String, String> toHashMap(Object ... objs) {
@@ -3406,10 +3424,8 @@ public interface ToolBox {
 	    }
 	    
 	    public static void response(HttpServletResponse response, 
-	    								Object data, 
-	    								boolean json, 
-	    								String callback, 
-	    								String charset) throws IOException {
+	    								Object data, boolean json, 
+	    								String callback, String charset) throws IOException {
 			if(null == data) {
 				data = "{}";
 			}
@@ -3421,9 +3437,8 @@ public interface ToolBox {
 			if(Strings.isNotBlank(callback)) {
 				content = "\n" + callback + "(" + content + ");";
 			}
-			PrintWriter out = response.getWriter();
-			out.print(content);
-			out.flush();
+			response.getWriter().write(content);
+	        response.getWriter().flush();
 		}
 		
 	}
