@@ -3304,6 +3304,21 @@ public interface ToolBox {
 		}
 		
 		/**
+		 * 检测URL地址是否有效
+		 */
+		public static boolean touch(String url) {
+			boolean suc = false;
+		    try {  
+		    		URL _url = new URL(url);  
+		        InputStream in = _url.openStream();  
+		        suc = (null != in); 
+		    } catch (Exception ex) {
+		    		suc = false; 
+		    }
+		    return suc;
+		}
+		
+		/**
 		 * 获取 Request Playload 内容
 		 */
 		public static String requestPlayload(HttpServletRequest request) throws IOException {
