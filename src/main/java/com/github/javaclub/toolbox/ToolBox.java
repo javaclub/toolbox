@@ -3163,6 +3163,33 @@ public interface ToolBox {
 		}
 		
 		/**
+		 * 判断是否是内网IP
+		 *
+		 * @param ip IP地址
+		 * @return 内网IP返回true,否则返回false
+		 */
+		public static boolean isInternalIp(String ip) {
+			//匹配10.0.0.0 - 10.255.255.255的网段
+	        String pattern_10 = "^(\\D)*10(\\.([2][0-4]\\d|[2][5][0-5]|[01]?\\d?\\d)){3}";
+
+	        //匹配172.16.0.0 - 172.31.255.255的网段
+	        String pattern_172 = "172\\.([1][6-9]|[2]\\d|3[01])(\\.([2][0-4]\\d|[2][5][0-5]|[01]?\\d?\\d)){2}";
+
+	        //匹配192.168.0.0 - 192.168.255.255的网段
+	        String pattern_192 = "192\\.168(\\.([2][0-4]\\d|[2][5][0-5]|[01]?\\d?\\d)){2}";
+
+	        //合起来写
+	        String pattern = "((192\\.168|172\\.([1][6-9]|[2]\\d|3[01]))"
+	                + "(\\.([2][0-4]\\d|[2][5][0-5]|[01]?\\d?\\d)){2}|"
+	                + "^(\\D)*10(\\.([2][0-4]\\d|[2][5][0-5]|[01]?\\d?\\d)){3})";
+
+	        Pattern reg = Pattern.compile(pattern);
+	        Matcher match = reg.matcher(ip);
+
+	        return match.find();
+		}
+		
+		/**
 		 * 允许 JS 跨域设置
 		 */
 		public static void allowJsCrossDomain(HttpServletRequest request, HttpServletResponse response) {
