@@ -23,6 +23,7 @@ import com.github.javaclub.toolbox.ToolBox.BonusAlgorithm;
  */
 public class _TestCases {
 	
+	
 	@Test
 	public void testBonusSplit() {
 		List<BigDecimal> list = BonusAlgorithm.split(new BigDecimal("30"), 8);
@@ -30,6 +31,7 @@ public class _TestCases {
 			System.out.println(bigDecimal);
 		}
 	}
+	
 
 	@Test
 	public void testUrlSafeBase64() {
