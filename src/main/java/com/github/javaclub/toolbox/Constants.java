@@ -10,7 +10,7 @@ package com.github.javaclub.toolbox;
 import java.io.File;
 import java.io.Serializable;
 
-import com.github.javaclub.toolbox.util.PropUtil;
+import com.github.javaclub.toolbox.ToolBox.Systems;
 
 /**
  * Collected constants of general utility.
@@ -24,7 +24,7 @@ public final class Constants implements Serializable {
 	private static final long serialVersionUID = 5594079818259577805L;
 
 	/** the newline character，it is "\r\n" in windows，and "\n" in linux */
-	public static final String LINE_SEPARATER = PropUtil.getSystemProperty("line.separator", "\r\n");
+	public static final String LINE_SEPARATER = Systems.getSystemProperty("line.separator", "\r\n");
 
 	/** File.separator */
 	public static final String FILE_SEPARATER = File.separator;

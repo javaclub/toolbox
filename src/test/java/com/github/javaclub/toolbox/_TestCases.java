@@ -42,4 +42,5 @@ public class _TestCases {
 		
 		System.out.println(text.equals(decodeBase64));
 	}
+	
 }
