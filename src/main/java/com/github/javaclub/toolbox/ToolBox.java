@@ -1998,6 +1998,14 @@ public interface ToolBox {
 			return null;
 		}
 		
+		public static boolean isPositiveNumber(Number value) {
+			if(null == value) {
+				return false;
+			}
+			BigDecimal num = new BigDecimal(value.toString());
+			return num.compareTo(new BigDecimal(0)) > 0;
+		}
+		
 	}
 	
 	/**
